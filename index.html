@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Teste — Grain</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      background: #18181A;
+      color: #F3F4F6;
+      overflow: hidden;
+    }
+
+    /* =========================
+       CONTEÚDO DE TESTE
+    ========================= */
+
+    main {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: Arial, sans-serif;
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+    }
+
+
+    /* =========================
+       GRAIN
+    ========================= */
+
+    .grain {
+      position: fixed;
+
+      /*
+        A camada é propositalmente maior
+        que a tela para podermos movimentá-la
+        sem revelar as bordas.
+      */
+
+      top: -50%;
+      left: -50%;
+
+      width: 200%;
+      height: 200%;
+
+      pointer-events: none;
+      z-index: 9999;
+
+      opacity: 0.075;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+
+      animation: grainMovement 0.18s steps(2) infinite;
+    }
+
+
+    /* =========================
+       MOVIMENTO DO GRÃO
+    ========================= */
+
+    @keyframes grainMovement {
+
+      0% {
+        transform: translate(0, 0);
+      }
+
+      10% {
+        transform: translate(-3%, -4%);
+      }
+
+      20% {
+        transform: translate(-7%, 3%);
+      }
+
+      30% {
+        transform: translate(4%, -7%);
+      }
+
+      40% {
+        transform: translate(-4%, 7%);
+      }
+
+      50% {
+        transform: translate(-7%, 4%);
+      }
+
+      60% {
+        transform: translate(7%, 0%);
+      }
+
+      70% {
+        transform: translate(0%, 7%);
+      }
+
+      80% {
+        transform: translate(3%, 4%);
+      }
+
+      90% {
+        transform: translate(-4%, -4%);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+
+    }
+
+
+    /* Acessibilidade */
+
+    @media (prefers-reduced-motion: reduce) {
+      .grain {
+        animation: none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <h1>PORTFÓLIO</h1>
+  </main>
+
+  <div class="grain" aria-hidden="true"></div>
+
+</body>
+</html>
